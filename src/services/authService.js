@@ -1,6 +1,6 @@
 require('dotenv').config();
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { createLog } = require('./logService');
 
 const generateToken = async (user) => {
     const secret = process.env.JWT_SECRET;
@@ -9,7 +9,14 @@ const generateToken = async (user) => {
 
     const expirationTime = 3600;
 
-    const token = await jwt.sign({ id }, secret, { expiresIn: expirationTime });
+    const token = jwt.sign({ id }, secret, { expiresIn: expirationTime });
+
+    await createLog({
+        userEmail: user.email,
+        operation: 'LOGIN',
+        object: 'SESSÃO',
+        details: `Login na aplicação pelo usuário: ${user.name} \n Endereço IP:`
+    });
 
     return { access_token: token, expires_in: expirationTime };
 }
