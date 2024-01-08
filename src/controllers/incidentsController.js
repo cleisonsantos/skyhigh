@@ -1,24 +1,9 @@
-const Incident = {
-    getAll: async () => {
-        return [
-            {
-                id: 1,
-                title: 'Incident 1',
-                description: 'Description 1'
-            },
-            {
-                id: 2,
-                title: 'Incident 2',
-                description: 'Description 2'
-            }
-        ];
-    }
-}
+const incidentsService = require('../services/incidentsService');
 
 const incidentsController = {
     getAll: async (req, res) => {
         try {
-            const incidents = await Incident.getAll();
+            const incidents = await incidentsService.getAll();
             res.json({
                 status: 0,
                 message: 'Success',
@@ -26,6 +11,7 @@ const incidentsController = {
             });
         } catch (error) {
             console.log(error);
+            res.status(500).json({ message: 'Internal server error' });
         }
     }
 };
