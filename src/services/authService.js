@@ -7,9 +7,11 @@ const generateToken = async (user) => {
 
     const id = user._id;
 
-    const token = await jwt.sign({ id }, secret);
+    const expirationTime = 3600;
 
-    return token;
+    const token = await jwt.sign({ id }, secret, { expiresIn: expirationTime });
+
+    return { access_token: token, expires_in: expirationTime };
 }
 
 module.exports = { generateToken }

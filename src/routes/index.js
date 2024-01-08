@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.use('/auth', require('./auth'));
+router.use('/auth', authRouter);
 router.use('/users', usersRouter);
 router.use('/incidents', incidentsRouter);
 
