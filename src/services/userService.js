@@ -13,7 +13,13 @@ const getAll = async (user) => {
 }
 
 const getById = async (id) => {
-    return await User.findById(id);
+    const user = await User.findById(id);
+    return user;
+}
+
+const get = async (id) => {
+    const user = await User.findById(id, 'name email isSSO createdAt updatedAt');
+    return user;
 }
 
 const getUserByEmail = async (email) => {
@@ -30,6 +36,7 @@ module.exports = {
     create,
     getAll,
     getById,
+    get,
     getUserByEmail,
     checkPassword
 }

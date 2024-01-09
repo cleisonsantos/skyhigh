@@ -15,7 +15,7 @@ const generateToken = async (user) => {
         userEmail: user.email,
         operation: 'LOGIN',
         object: 'SESSÃO',
-        details: `Login na aplicação pelo usuário: ${user.name} \n Endereço IP:`
+        details: `Login na aplicação pelo usuário: ${user.name}, Endereço IP:`
     });
 
     return { access_token: token, expires_in: expirationTime };

@@ -4,8 +4,7 @@ const checkToken = require("../middlewares/checkToken");
 
 const incidentsController = require("../controllers/incidentsController");
 
-//const { isAuthenticated } = require("../middlewares/isAuthenticated");
-
 router.get("/", checkToken, incidentsController.getAll);
+router.patch('/:id', checkToken, incidentsController.updateIncidentStatus);
 
 module.exports = router;

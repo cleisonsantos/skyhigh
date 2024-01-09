@@ -1,4 +1,4 @@
-const { create, getAll, getById } = require('../services/userService')
+const { create, getAll, get } = require('../services/userService')
 
 const userController = {
     getAll: async (req, res) => {
@@ -10,7 +10,7 @@ const userController = {
         });
     },
     getById: async (req, res) => {
-        const user = await getById(req.params.id)
+        const user = await get(req.params.id)
         res.json({
             status: 0,
             message: 'success',
