@@ -32,7 +32,7 @@ const authController = {
 
             res.status(200).json({ msg: "Autenticação realizada com sucesso!", ...tokenData });
         } catch (error) {
-            res.status(500).json({ msg: error });
+            res.status(500).json({ error });
         }
     }
 }

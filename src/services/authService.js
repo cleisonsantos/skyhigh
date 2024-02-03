@@ -5,11 +5,9 @@ const { createLog } = require('./logService');
 const generateToken = async (user) => {
     const secret = process.env.JWT_SECRET;
 
-    const id = user._id;
-
     const expirationTime = 3600;
 
-    const token = jwt.sign({ id }, secret, { expiresIn: expirationTime });
+    const token = jwt.sign({id: user.id, email: user.email, name: user.name, role: user.role}, secret, { expiresIn: expirationTime });
 
     await createLog({
         userEmail: user.email,
