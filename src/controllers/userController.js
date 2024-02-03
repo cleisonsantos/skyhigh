@@ -10,7 +10,7 @@ const userController = {
         });
     },
     getById: async (req, res) => {
-        const user = await get(req.params.id)
+        const user = await get(req.params.id * 1)
         res.json({
             status: 0,
             message: 'success',
@@ -22,7 +22,7 @@ const userController = {
         res.status(201).json({
             status: 0,
             message: 'user created',
-            data: { id: user._id, name: user.name, email: user.email }
+            data: { id: user.id, name: user.name, email: user.email }
         });
     },
     update: async (req, res) => {

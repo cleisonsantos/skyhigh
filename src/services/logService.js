@@ -1,9 +1,11 @@
+const { PrismaClient } = require('@prisma/client');
 const Log = require('../models/Log.js');
 
+const prisma = new PrismaClient();
+
 const createLog = async (logObj) => {
-    const log = new Log(logObj);
-    const storedLog = await log.save();
-    console.log(storedLog);
+    const log = await prisma.log.create({ data: logObj });
+    console.log(log);
 }
 
 module.exports = {

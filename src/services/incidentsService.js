@@ -54,10 +54,10 @@ const updateIncidentStatus = async ({ incidentId, policyName, status }, userId) 
         const incidentResponse = response.data;
         const user = await getById(userId);
         await createLog({
-            userEmail: user.email,
             operation: 'UPDATE',
             object: 'INCIDENTE',
-            details: `Atualização do status do incidente/politica: ${incidentId}/${policyName} para ${status}`
+            details: `Atualização do status do incidente/politica: ${incidentId}/${policyName} para ${status}`,
+            userId: user.id
         });
         return incidentResponse;
     } catch (error) {

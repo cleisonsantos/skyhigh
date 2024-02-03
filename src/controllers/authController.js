@@ -27,12 +27,11 @@ const authController = {
         }
 
         try {
-
             const tokenData = await authService.generateToken(user);
-
             res.status(200).json({ msg: "Autenticação realizada com sucesso!", ...tokenData });
         } catch (error) {
-            res.status(500).json({ error });
+            console.log(error);
+            res.status(500).json({ error: "Erro interno do servidor" });
         }
     }
 }
