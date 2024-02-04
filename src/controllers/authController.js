@@ -27,8 +27,17 @@ const authController = {
         }
 
         try {
-            const tokenData = await authService.generateToken(user);
-            res.status(200).json({ msg: "Autenticação realizada com sucesso!", ...tokenData });
+            const serialized = await authService.generateToken(user);
+            res.setHeader('Set-Cookie', serialized);
+            res.status(200).json({
+                msg: "Autenticação realizada com sucesso!",
+                success: true,
+                user: {
+                    id: user.id,
+                    name: user.name,
+                    email: user.email
+                }
+            });
         } catch (error) {
             console.log(error);
             res.status(500).json({ error: "Erro interno do servidor" });
